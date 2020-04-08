@@ -1,0 +1,71 @@
+<div class="card-header" id="cardHeaderForCreateUsers">
+  <p class="font-weight-normal text-white" style="margin-top: 5px;"> UPDATE / DELETE COMPANY</p>
+</div>
+<mat-form-field class="col-8 offset-2" style="border-radius: 2px solid;">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search" > 
+  </mat-form-field>
+  <div class="contaner-fluid col-10 offset-1">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="border: 2px solid;">
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="userId">
+      <th mat-header-cell *matHeaderCellDef class="table_header"> No. </th>
+      <td mat-cell *matCellDef="let element:let i = index"> {{i+1}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="companyEntity">
+      <th mat-header-cell *matHeaderCellDef class="table_header"> Company Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.companyEntity.companyName}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef class="table_header"> User Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="displayName">
+      <th mat-header-cell *matHeaderCellDef class="table_header"> Display Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.displayName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="designationEntity">
+      <th mat-header-cell *matHeaderCellDef class="table_header"> User Type </th>
+      <td mat-cell *matCellDef="let element"> {{element.designationEntity.designationName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef class="table_header"> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef class="table_header">Action</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="action-btn">
+          <a  (click)="updateUser(element)" class="action-link">
+            <mat-icon class="edit-btn" title="Edit">edit</mat-icon>
+          </a>
+        </div>
+        <span style="color: #3f51b5;">|</span>
+        <div class="action-btn">
+          <a  (click)="deleteUser(element)" class="action-link">
+            <mat-icon class="delete-btn" title="Delete">delete_forever</mat-icon>
+          </a>
+        </div>
+      </td>
+    </ng-container>
+ 
+   
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+  </table>
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 15 , 20]" style="border-bottom: 1px solid;"></mat-paginator> -->
+  </div>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+<router-outlet></router-outlet>

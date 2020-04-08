@@ -1,0 +1,96 @@
+<h2 class="text-center" style="padding-top: 16px;padding-bottom: 16px;">Fixed Tickets List</h2>
+<mat-form-field class="col-8 offset-2" style="border-radius: 2px solid;"> 
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search Here..." > 
+  </mat-form-field>
+  <div class="contaner-fluid col-10 offset-0">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="border: 2px solid;">
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="ticketId">
+      <th mat-header-cell *matHeaderCellDef class="table_header"> SI.No </th>
+      <td mat-cell *matCellDef="let element:let i = index"> {{i+1}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="companyTicketId">
+      <th mat-header-cell *matHeaderCellDef class="table_header">TicketID</th>
+      <td mat-cell *matCellDef="let element"> {{element.companyTicketId}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="companyEntity">
+      <th mat-header-cell *matHeaderCellDef class="table_header">CompanyName</th>
+      <td mat-cell *matCellDef="let element"> {{element.companyEntity.companyName}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="userEntity">
+      <th mat-header-cell *matHeaderCellDef class="table_header"> Requester </th>
+      <td mat-cell *matCellDef="let element"> {{element.userEntity.username}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdDate">
+      <th mat-header-cell *matHeaderCellDef class="table_header">RequestedDate</th>
+      <td mat-cell *matCellDef="let element"> {{element.createdDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="issueCategory">
+      <th mat-header-cell *matHeaderCellDef class="table_header">Catagory </th>
+      <td mat-cell *matCellDef="let element"> {{element.issueCategory}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="issueSubCategory">
+      <th mat-header-cell *matHeaderCellDef class="table_header">Sub-Category</th>
+      <td mat-cell *matCellDef="let element"> {{element.issueSubCategory}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="assignedUser">
+      <th mat-header-cell *matHeaderCellDef class="table_header"> Assignee </th>
+      <td mat-cell *matCellDef="let element"> {{element.assignedUser.username}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="priority">
+      <th mat-header-cell *matHeaderCellDef class="table_header"> Severity </th>
+      <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ticketStatus">
+      <th mat-header-cell *matHeaderCellDef class="table_header"> TicketStatus </th>
+      <td mat-cell *matCellDef="let element"> {{element.ticketStatus}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="ticketFileName">
+      <th mat-header-cell *matHeaderCellDef class="table_header"> Attachment </th>
+      <td mat-cell *matCellDef="let element"><a href="/Uploads/Ticket/TicketFile/{{element.ticketFileName}}"></a>{{element.ticketFileName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef class="table_header">Action</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="action-btn">
+          <a  (click)="editOpenTicket(element)" class="action-link">
+            <mat-icon class="edit-btn" title="Edit">edit</mat-icon>
+          </a>
+        </div>
+        <span style="color: #3f51b5;">|</span>
+        <div class="action-btn" *ngIf="designation=='Assigned_User'">
+          <a  (click)="deleteTicket(element)" class="action-link">
+            <mat-icon class="delete-btn" title="Delete">delete_forever</mat-icon>
+          </a>
+        </div>
+      </td>
+    </ng-container>
+ 
+   
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+  </table>
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 15 , 20]" style="border-bottom: 1px solid;"></mat-paginator> -->
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" style=" width: 114%;"></mat-paginator>
+<div class="col-3">
+  <button type="button" class="btn btn-danger btn-block" (click)="navigateDash()">Back To Dashboard</button>
+</div>
+<!-- <router-outlet></router-outlet> -->

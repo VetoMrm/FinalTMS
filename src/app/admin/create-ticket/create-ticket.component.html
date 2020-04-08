@@ -1,0 +1,130 @@
+<div class="container-fluid col-10" style="margin-top: 10px;">
+    <div class="card" style="border: solid 1px;">
+        <div class="card-header" id="cardHeaderForCreateUsers">
+
+            <p class="font-weight-normal text-white" style="margin-top: 5px;"> CREATE TICKET </p>
+        </div>
+        <div class="card-body offset-1">
+
+            <form [formGroup]='formGroup'>
+                <div class="form-row mt-4">
+                    <div class="col col-4 offset-1" *ngIf="designation=='Assigned_User'">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Company Name<sup class="text-danger">*</sup></label>
+                            <select class="form-control" id="companyId"  name="companyId" (change)="selectRequester($event)"
+                            formControlName='companyId' style="border: solid 1px;">
+                                <option value="">--Select Company--</option>
+                                <option *ngFor='let com of company' value="{{com.companyId}}">{{com.companyName}}</option>
+                            </select>
+                            <div *ngIf='companyId.invalid && (companyId.dirty || companyId.touched)' class="text-danger">
+                                <div *ngIf='companyId.errors.required'>Company Name Required</div>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col col-4 offset-1" *ngIf="designation=='Assigned_User'"> 
+                        <div class="form-group">
+                            <label class="font-weight-bold">Requester<sup class="text-danger">*</sup></label>
+                            <select class="form-control" id="userId" name="userId" (change)="selectUser($event)" formControlName='userId' style="border: solid 1px;">
+                                <option value="">--Select Requester--</option>
+                                <option *ngFor='let user of userList' value="{{user.userId}}">{{user.username}}</option>
+                            </select>
+                            <div *ngIf='userId.invalid && (userId.dirty || userId.touched)' class="text-danger">
+                                <div *ngIf='userId.errors.required'>Requester Required</div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col col-4 offset-1">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Issue Category<sup class="text-danger">*</sup></label>
+                            <select class="form-control" id="selectIssueCategory" name="issueCategory" formControlName='issueCategory'
+                             (change)="selectIssueSubCategory($event)" style="border: solid 1px;">
+                                <option value="">--Select Issue Category--</option>
+												<option value="Direct">Direct</option>
+												<option value="InDirect">InDirect</option>
+												<option value="Audit">Audit</option>
+												<option value="Others">Others</option>
+                            </select>
+                            <div *ngIf='issueCategory.invalid && (issueCategory.dirty || issueCategory.touched)' class="text-danger">
+                                <div *ngIf='issueCategory.errors.required'>Issue Category Required</div>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col col-4 offset-1">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Issue Sub-Category<sup class="text-danger">*</sup></label>
+                            <select class="form-control" id="issueSub-Category" name="issueSub-Category"  (change)="getSubCategory($event)"
+                            formControlName='issueSubCategory' style="border: solid 1px;">
+                                <option value="">--Select Issue Sub-Category--</option>
+                            </select>
+                            <div *ngIf='issueSubCategory.invalid && (issueSubCategory.dirty || issueSubCategory.touched)' class="text-danger">
+                                <div *ngIf='issueSubCategory.errors.required'>Issue Sub-Category Required</div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col col-4 offset-1">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Issue Type<sup class="text-danger">*</sup></label>
+                            <select class="form-control"  id="issueType" name="issueType" formControlName='issueType' 
+                            style="border: solid 1px;" (change)="selectIssueType($event)">
+												<option value="">--Select Issue Type--</option>
+												<option value="Bug">Bug</option>
+												<option value="ChangeRequest">Change Request</option>
+                            </select>
+                            <div *ngIf='issueType.invalid && (issueType.dirty || issueType.touched)' class="text-danger">
+                                <div *ngIf='issueType.errors.required'>Issue Type Required</div>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col col-4 offset-1">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Severity<sup class="text-danger">*</sup></label>
+                            <select class="form-control" id="priority" name="priority" (change)="selectSeverity($event)"
+                            formControlName='severity' style="border: solid 1px;">
+												<option value="">--Select Severity--</option>
+												<option value="Minor">Minor</option>
+												<option value="Major">Major</option>
+												<option value="Critical">Critical</option>
+                            </select>
+                            <div *ngIf='severity.invalid && (severity.dirty || severity.touched)' class="text-danger">
+                                <div *ngIf='severity.errors.required'>Severity Required</div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" style="margin-left: 2.5rem;">
+                    <div class="form-group col-10">
+                        <label for="issues" class="font-weight-bold">Issue Description <sup class="text-danger">*</sup></label>
+                        <textarea class="form-control" id="issueDescription" name="issueDescription" rows="4" (change)="selectDescription($event)"
+                        formControlName='issueDescription' style="border: solid 1px;"></textarea>
+                        <div *ngIf='issueDescription.invalid && (issueDescription.dirty || issueDescription.touched)' class="text-danger">
+                            <div *ngIf='issueDescription.errors.required'>Issue Description Required</div>
+                            <div *ngIf='issueDescription.errors.minlength'>Issue Description Should Contains Atleast 20 character</div>
+                         </div>
+                    </div>
+                    <div class="input-group mb-3 col-7 ">
+                        <label class="" for="customFile" class="font-weight-bold">Upload File <sup class="text-danger">*</sup></label>
+                        <input type="file" class="form-control" id="uploadFile" (change)="selectFile($event)"/>
+                    </div>
+                    <div *ngIf="designation=='Assigned_User'">
+                        <button type="button" class="btn btn-primary btn-block col-3 offset-4 mt-4" [disabled] = "formGroup.invalid" (click)="createTicketAsAssignedUser()">CREATE TICKET</button>
+                    </div>
+                    <div *ngIf="designation=='Admin' || designation=='User'">
+                        <button type="button" class="btn btn-primary btn-block col-3 offset-4 mt-4" [disabled] = "formGroup.invalid" (click)="createTicket()">CREATE TICKET</button>
+                    </div>
+                    
+                    <div class="text-center">
+                        <span style="color:springgreen; text-align: center;">{{responseMsg}}</span>
+                        <br>
+                        <span style="color:springgreen; text-align: center;">{{responseTicketId}}</span>  
+                    </div>
+ 
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

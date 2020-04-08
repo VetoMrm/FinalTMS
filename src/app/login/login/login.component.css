@@ -1,0 +1,74 @@
+
+/* .login-button{
+    background-color: #1273eb;
+    color: whitesmoke;
+    
+}
+.login-button:hover{
+    animation: infinite;
+    background-color: #0274ff;
+    color: black;
+    
+}
+.height{
+    height: 92.5%;
+}
+.sin{
+    border-bottom: solid var(--main-bg-2-color);
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+} */
+
+
+/* #first{
+    background-color: #1A237E;
+    height: 100%;
+}
+
+#loginCard{
+    height: 30rem;
+    margin-top: 6rem;
+}
+
+#lab{
+    border:  2px solid;
+    height: 3rem;
+}
+#name{
+    font-size: x-large;
+} */
+.login-bg{
+    /* background-color: var(--main-bg-1-color); */
+    background-color: white;
+}
+
+.imm{
+    height: 25rem;
+    width: 25rem;
+}
+.immlog{
+    width: 7rem;
+    margin-top: 1rem;
+}
+.wel{
+    width: 6rem;
+}
+.login-button{
+    background-color: #1273eb;
+    color: whitesmoke;
+    height: 20%;
+}
+.login-button:hover{
+    animation: infinite;
+    background-color: #0274ff;
+    color: black;
+    
+}
+.height{
+    height: 92.5%;
+}
+.sin{
+    border-bottom: solid var(--main-bg-2-color);
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+}

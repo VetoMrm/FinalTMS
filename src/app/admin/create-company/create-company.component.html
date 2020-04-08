@@ -1,0 +1,41 @@
+<div class="container-fluid col-10" style="margin-top: 10px;">
+    <div class="card" style="border: solid 1px; height: 28rem;">
+        <div class="card-header" id="cardHeaderForCreateUsers">
+            <p class="font-weight-normal text-white" style="margin-top: 5px;"> CREATE COMPANY </p>
+        </div>
+        <div>
+        <div class="card-body" style="margin-top: 1rem;">
+            <form [formGroup]='formGroup'>
+                <div class="form-row mt-4">
+                    <div class="col col-6 offset-3">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Company Name:<sup class="text-danger">*</sup></label>
+                            <input type="text" class="form-control" (keyup)="selectComapny($event)" id="companyName" name="companyName" formControlName='companyName'
+                                placeholder="Enter The Company name" style="border: solid 1px;" #cName>
+                                <div *ngIf='companyName.invalid && (companyName.dirty || companyName.touched)' class="text-danger">
+                                    <div *ngIf='companyName.errors.required'> Company Name Required</div>
+                                    <div *ngIf='companyName.errors.minlength'> Company Name Should Contains Atleast 5 character</div>
+                                    <div *ngIf='companyName.errors.pattern'>Company Name should contains only alphabets</div> 
+                                </div>
+                                <div *ngIf="checkCompanyNameMsg" class="text-danger"> Company Name is Already Exist...Please Change the Company Name</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <div class="col col-5 offset-3"> 
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block" id="createCompany" [disabled] = "formGroup.invalid" 
+                    (click)="createCompany(cName.value)" style="margin-left: 42px;">CREATE COMPANY</button>
+                </div>
+                
+            </div>
+            <div class="text-center">
+                <span *ngIf="submitted" style="color:springgreen; text-align: center;">Company Created Succesfully</span>
+              </div>
+        </div>
+    
+    </div>
+
+
+</div>

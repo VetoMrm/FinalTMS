@@ -1,0 +1,66 @@
+<mat-toolbar color="{{themes()}}">
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="toggleSideBar()" id="sideBar">
+            <mat-icon>menu</mat-icon>
+        </button>
+            <h3>
+                TMS
+            </h3>
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end" class="align-middle">
+            <ul fxLayout="row" fxLayoutGap="10px" class="mt-3">   
+                <li>
+                    <button mat-button [matMenuTriggerFor]="color">
+                        <mat-icon>format_paint</mat-icon>
+                    </button>
+                    <mat-menu #color="matMenu">
+
+                        <button mat-menu-item (click)='themes1()'>
+                           <mat-icon style="color: rgb(252, 54, 87);">invert_colors</mat-icon>
+                           pink
+                        </button>
+                        <button mat-menu-item (click)='themes3()'>
+                           <mat-icon style="color: orangered;">invert_colors</mat-icon>
+                           warm
+                        </button>
+                        <button mat-menu-item (click)='themes0()'>
+                           <mat-icon style="color: blue;">invert_colors</mat-icon>
+                           blue
+                        </button>
+                    </mat-menu>
+                </li>           
+                <li>
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        <mat-icon>settings</mat-icon>
+                    </button>
+                    
+                    <mat-menu #menu="matMenu">
+                        
+                        <a routerLink='/default/userDetail' style="text-decoration: none;">
+                            <button mat-menu-item>
+                                <mat-icon>supervised_user_circle</mat-icon>
+                                User Details
+                            </button>
+                        </a>
+                        <a routerLink='/default/contactUs' style="text-decoration: none;">
+                            <button mat-menu-item>
+                                <mat-icon>contact_support</mat-icon>
+                                Contact Us
+                            </button>
+                        </a>
+                        <a routerLink='/default/changePassword' style="text-decoration: none;">
+                            <button mat-menu-item>     
+                                <mat-icon>lock_open</mat-icon>
+                                Change Password
+                            </button>
+                            </a>
+                        <button mat-menu-item (click)="logOut()">
+                            <mat-icon>exit_to_app</mat-icon>
+                            Sign Out
+                        </button>
+                    </mat-menu>
+                </li>
+            </ul>
+        </div>
+    </mat-toolbar-row>
+
+</mat-toolbar>

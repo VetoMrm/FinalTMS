@@ -1,0 +1,172 @@
+<div class="container-fluid bg-white">
+    
+       <div *ngIf="designation=='SuperAdmin'">
+        <div class="d-flex  justify-content-around flex-row bd-highlight mb-3">
+            <div class="p-2 bd-highlight">
+                <img src="assets/icons/ani1.gif"  class="imm"/>
+            </div>
+            <div class="p-2 bd-highlight">
+                <img src="assets/icons/ani2.gif"  class="imm"/>
+            </div>
+            <div class="p-2 bd-highlight">
+                <img src="assets/icons/ani3.gif"  class="imm"/>
+            </div>
+          </div>
+        <marquee scrollamount="15" style="font-size: 3em">Welcome To Service Desk System</marquee>
+       </div>
+
+        <div *ngIf="designation=='Admin'">
+        <div class="card-deck">
+            <div class="card shadow-lg p-3 mb-5 rounded " (click)="getAdminOpenTickets()" id="cardDesign1">
+                <div class="card-body text-center">
+                    <img src="assets\icons\open.png" class="image">
+                    <span style="font-size: 30px;">Open</span>
+                   <p class="card-text " id="value"><ng2-odometer [number]="ticket.adminOpenTicket" [config]="{ }"></ng2-odometer></p>               
+                </div>
+            </div>
+            <div class="card shadow-lg p-3 mb-5 rounded" id="cardDesign2" (click)="getAdminInProgressTickets()">
+                <div class="card-body text-center">
+                    <img src="assets\icons\progress.png" class="image">
+                    <span style="font-size: 25px;">In-Progress</span>
+                    <p class="card-text" id="value"><ng2-odometer [number]="ticket.adminInprogressTicket" [config]="{ }"></ng2-odometer></p>               
+                </div>
+            </div>
+            <div class="card shadow-lg p-3 mb-5 rounded" id="cardDesign3" (click)="getAdminFixedTickets()">
+                <div class="card-body text-center">
+                    <img src="assets\icons\debug.png" class="image">
+                    <span style="font-size: 30px;">Fixed</span>
+                    <p class="card-text" id="value"><ng2-odometer [number]="ticket.adminFixedTicket" [config]="{ }"></ng2-odometer></p>               
+                </div>
+            </div>
+        </div>
+    
+        <div class="card-deck">
+            <div class="card shadow-lg p-3 mb-5 rounded" id="cardDesign4" (click)="getAdminHoldTickets()">
+                <div class="card-body text-center">
+                    <img src="assets\icons\icons8-pause-100.png" class="image">
+                    <span style="font-size: 30px;">Hold</span>
+                    <p class="card-text" id="value"><ng2-odometer [number]="ticket.adminHoldTicket" [config]="{ }"></ng2-odometer></p>               
+                </div>
+            </div>
+            <div class="card shadow-lg p-3 mb-5 rounded" id="cardDesign5" (click)="getAdminClosedTickets()">
+                <div class="card-body text-center">
+                    <img src="assets\icons\closed.png" class="image">
+                    <span style="font-size: 30px;">Closed</span>
+                    <p class="card-text" id="value"><ng2-odometer [number]="ticket.adminClosedTicket" [config]="{ }"></ng2-odometer></p>               
+                </div>
+            </div>
+            <div class="card shadow-lg p-3 mb-5 rounded" id="cardDesign6" (click)="getAdminReOpenTickets()">
+                <div class="card-body text-center">
+                    <img src="assets\icons\refresh.png" class="image">
+                    <span style="font-size: 30px;">Re-Open</span>
+                    <p class="card-text" id="value"><ng2-odometer [number]="ticket.adminReOpenTicket" [config]="{ }"></ng2-odometer></p>               
+                </div>
+            </div>
+    
+        </div>
+    </div>
+        
+    <div *ngIf="designation=='User'">
+            <div class="card-deck">
+                <div class="card shadow-lg p-3 mb-5 rounded " (click)="getUserOpenTickets()" id="cardDesign1">
+                    <div class="card-body text-center">
+                        <img src="assets\icons\open.png" class="image">
+                        <span style="font-size: 30px;">Open</span>
+                       <p class="card-text " id="value"><ng2-odometer [number]="ticket.userOpenTicket" [config]="{ }"></ng2-odometer></p>               
+                    </div>
+                </div>
+                <div class="card shadow-lg p-3 mb-5 rounded" id="cardDesign2" (click)="getUserInProgressTickets()">
+                    <div class="card-body text-center">
+                        <img src="assets\icons\progress.png" class="image">
+                        <span style="font-size: 25px;">In-Progress</span>
+                        <p class="card-text" id="value"><ng2-odometer [number]="ticket.userInprogressTicket" [config]="{ }"></ng2-odometer></p>               
+                    </div>
+                </div>
+                <div class="card shadow-lg p-3 mb-5 rounded" id="cardDesign3" (click)="getUserFixedTickets()">
+                    <div class="card-body text-center">
+                        <img src="assets\icons\debug.png" class="image">
+                        <span style="font-size: 30px;">Fixed</span>
+                        <p class="card-text" id="value"><ng2-odometer [number]="ticket.userFixedTicket" [config]="{ }"></ng2-odometer></p>               
+                    </div>
+                </div>
+            </div>
+        
+            <div class="card-deck">
+                <div class="card shadow-lg p-3 mb-5 rounded" id="cardDesign4" (click)="getUserHoldTickets()">
+                    <div class="card-body text-center">
+                        <img src="assets\icons\icons8-pause-100.png" class="image">
+                        <span style="font-size: 30px;">Hold</span>
+                        <p class="card-text" id="value"><ng2-odometer [number]="ticket.userHoldTicket" [config]="{ }"></ng2-odometer></p>               
+                    </div>
+                </div>
+                <div class="card shadow-lg p-3 mb-5 rounded" id="cardDesign5" (click)="getUserClosedTickets()">
+                    <div class="card-body text-center">
+                        <img src="assets\icons\closed.png" class="image">
+                        <span style="font-size: 30px;">Closed</span>
+                        <p class="card-text" id="value"><ng2-odometer [number]="ticket.userClosedTicket" [config]="{ }"></ng2-odometer></p>               
+                    </div>
+                </div>
+                <div class="card shadow-lg p-3 mb-5 rounded" id="cardDesign6" (click)="getUserReOpenTickets()">
+                    <div class="card-body text-center">
+                        <img src="assets\icons\refresh.png" class="image">
+                        <span style="font-size: 30px;">Re-Open</span>
+                        <p class="card-text" id="value"><ng2-odometer [number]="ticket.userReOpenTicket" [config]="{ }"></ng2-odometer></p>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div *ngIf="designation=='Assigned_User'">
+                <div class="card-deck">
+                    <div class="card shadow-lg p-3 mb-5 rounded " (click)="getAssigneeOpenTickets()" id="cardDesign1">
+                        <div class="card-body text-center">
+                            <img src="assets\icons\open.png" class="image">
+                            <span style="font-size: 30px;">Open</span>
+                           <p class="card-text " id="value"><ng2-odometer [number]="ticket.assigneOpenTicket" [config]="{ }"></ng2-odometer></p>               
+                        </div>
+                    </div>
+                    <div class="card shadow-lg p-3 mb-5 rounded" id="cardDesign2" (click)="getAssigneeInProgressTickets()">
+                        <div class="card-body text-center">
+                            <img src="assets\icons\progress.png" class="image">
+                            <span style="font-size: 25px;">In-Progress</span>
+                            <p class="card-text" id="value"><ng2-odometer [number]="ticket.assigneInprogressTicket" [config]="{ }"></ng2-odometer></p>               
+                        </div>
+                    </div>
+                    <div class="card shadow-lg p-3 mb-5 rounded" id="cardDesign3" (click)="getAssigneeFixedTickets()">
+                        <div class="card-body text-center">
+                            <img src="assets\icons\debug.png" class="image">
+                            <span style="font-size: 30px;">Fixed</span>
+                            <p class="card-text" id="value"><ng2-odometer [number]="ticket.assigneFixedTicket" [config]="{ }"></ng2-odometer></p>               
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="card-deck">
+                    <div class="card shadow-lg p-3 mb-5 rounded" id="cardDesign4" (click)="getAssigneeHoldTickets()">
+                        <div class="card-body text-center">
+                            <img src="assets\icons\icons8-pause-100.png" class="image">
+                            <span style="font-size: 30px;">Hold</span>
+                            <p class="card-text" id="value"><ng2-odometer [number]="ticket.assigneHoldTicket" [config]="{ }"></ng2-odometer></p>               
+                        </div>
+                    </div>
+                    <div class="card shadow-lg p-3 mb-5 rounded" id="cardDesign5" (click)="getAssigneeClosedTickets()">
+                        <div class="card-body text-center">
+                            <img src="assets\icons\closed.png" class="image">
+                            <span style="font-size: 30px;">Closed</span>
+                            <p class="card-text" id="value"><ng2-odometer [number]="ticket.assigneClosedTicket" [config]="{ }"></ng2-odometer></p>               
+                        </div>
+                    </div>
+                    <div class="card shadow-lg p-3 mb-5 rounded" id="cardDesign6" (click)="getAssigneeReOpenTickets()">
+                        <div class="card-body text-center">
+                            <img src="assets\icons\refresh.png" class="image">
+                            <span style="font-size: 30px;">Re-Open</span>
+                            <p class="card-text" id="value"><ng2-odometer [number]="ticket.assigneReOpenTicket" [config]="{ }"></ng2-odometer></p>               
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+
+    <!-- <router-outlet></router-outlet> -->
+   
+</div>

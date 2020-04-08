@@ -1,0 +1,61 @@
+<mat-nav-list>
+    <div class="profile-card mt-3">
+        <div class="header">
+            <h5>Welcome<h4 style="color:black;">{{displayName}}</h4></h5>
+        </div>
+        <img src="assets/profile.png" alt="Soufian FADIL">
+
+    </div>
+
+    <mat-divider></mat-divider>
+    <h2 matSubheader>Pages</h2>
+
+    <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/dashboard'>Dashboard</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/posts'>Posts</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/createTicket'>Create Ticket</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/createCompany'>Create Company</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/createUser'>Create User</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/companylist'>Company List</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/modifyUser'>Update / Delete User</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/modifyCompany'>Update / Delete Company</a> -->
+    <a mat-list-item routerLinkActive="list-item-active" (click)="gotToDefault()"><mat-icon>dashboard</mat-icon>Dashboard</a>
+    <!-- <div class="col-3">
+        <button type="button" class="btn btn-danger btn-block" (click)="navigateDash()">Back To Dashboard</button>
+      </div>
+       -->
+    <div *ngIf="designation=='SuperAdmin'">
+        <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/createCompany'><mat-icon>create</mat-icon>Create Company</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/modifyCompany'><mat-icon>delete</mat-icon>Update / Delete Company</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/createUser'><mat-icon>supervisor_account</mat-icon>Create User</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/modifyUser'><mat-icon>delete_sweep</mat-icon>Update / Delete User</a>
+    </div>
+    <div *ngIf="designation=='Assigned_User'">
+        <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/createTicket'><mat-icon>record_voice_over</mat-icon>Create Ticket</a>
+    </div>
+    <div *ngIf="designation=='Admin'">
+        <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/createUser'><mat-icon>supervisor_account</mat-icon>Create User</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/modifyUser'><mat-icon>delete_sweep</mat-icon>Update / Delete User</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/createTicket'><mat-icon>record_voice_over</mat-icon>Create Ticket</a>
+    </div>
+    <div *ngIf="designation=='User'">
+        <a mat-list-item routerLinkActive="list-item-active" routerLink='/default/createTicket'><mat-icon>record_voice_over</mat-icon>Create Ticket</a>
+    </div>
+
+
+
+
+
+    <mat-divider></mat-divider>
+
+    <!-- <h2 matSubheader> Tools</h2>
+   
+    <a mat-list-item routerLinkActive="list-item-active" routerLink='/'>
+    <mat-icon>import_contacts</mat-icon>
+    Contacts
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink='/'>
+        <mat-icon>contact_phone</mat-icon>
+        Leads
+    </a>
+    another menu -->
+</mat-nav-list>

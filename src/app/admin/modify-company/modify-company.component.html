@@ -1,0 +1,57 @@
+<div class="card-header" id="cardHeaderForCreateUsers">
+  <p class="font-weight-normal text-white" style="margin-top: 5px;"> UPDATE / DELETE USER</p>
+</div>
+<mat-form-field class="col-8 offset-2 mt-5" style="border-radius: 2px solid;">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search Here..." > 
+  </mat-form-field>
+  <div class="contaner-fluid col-10 offset-1">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="border: 2px solid;">
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="companyId">
+      <th mat-header-cell *matHeaderCellDef class="table_header"> No. </th>
+      <td mat-cell *matCellDef="let element:let i = index"> {{i+1}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="companyName">
+      <th mat-header-cell *matHeaderCellDef class="table_header"> Company Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef class="table_header">Action</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="action-btn">
+          <a  (click)="updateComapny(element)" class="action-link">
+            <mat-icon class="edit-btn" title="Edit">edit</mat-icon>
+          </a>
+        </div>
+        <span style="color: #3f51b5;">|</span>
+        <div class="action-btn">
+          <a (click)="delateComapny(element)" class="action-link">
+            <mat-icon class="delete-btn" title="Delete">delete_forever</mat-icon>
+          </a>
+        </div>
+      </td>
+    </ng-container>
+
+     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
+
+  </table>
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 15 , 20]" style="border-bottom: 1px solid;"></mat-paginator> -->
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+<router-outlet></router-outlet>
+<!-- <table>
+  <tr>
+    <th>SI NO</th>
+    <th>Company Name</th>
+  </tr>
+  <tr *ngFor='let emp of companyees'>
+<td>{{emp.companyId}}</td>
+<td>{{emp.companyName}}</td>
+  </tr>
+</table>   -->

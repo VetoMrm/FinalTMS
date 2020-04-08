@@ -1,0 +1,292 @@
+<div class="container-fluid col-10" style="margin-top: 10px;">
+    <div class="card" style="border: solid 1px;">
+        <div class="card-header" id="cardHeaderForCreateUsers">
+
+            <p class="font-weight-normal text-white" style="margin-top: 5px;"> EDIT TICKET </p>
+        </div>
+        <div class="card-body offset-1" *ngIf="(ticket != '' && ticket != null)">
+            <form>
+                <div class="form-row mt-4">
+                    <div class="col col-4 offset-1">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Ticket Id:<sup class="text-danger">*</sup></label>
+                            <input type="text" class="form-control" id="companyTicketId"  name="companyTicketId" [(ngModel)]="ticket.companyTicketId"
+                             style="border: solid 1px;" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col col-4 offset-1"> 
+                        <div class="form-group">
+                            <label class="font-weight-bold">Requested Date<sup class="text-danger">*</sup></label>
+                            <input type="text" class="form-control" id="createdDate"  name="createdDate" 
+                            [(ngModel)]='ticket.createdDate' style="border: solid 1px;" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col col-4 offset-1">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Company Name<sup class="text-danger">*</sup></label>
+                            <input type="text" class="form-control" id="companyName" name="companyName"
+                             [(ngModel)]='ticket.companyEntity.companyName' style="border: solid 1px;" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col col-4 offset-1"> 
+                        <div class="form-group">
+                            <label class="font-weight-bold">Requester<sup class="text-danger">*</sup></label>
+                            <input type="text" class="form-control" id="requestUser"  name="requestUser" [(ngModel)]="ticket.userEntity.username"
+                            style="border: solid 1px;" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col col-4 offset-1">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Issue Category<sup class="text-danger">*</sup></label>                         
+                            <select class="form-control "  style="border: solid 1px;"
+												id="selectIssueCategory" name="issueCategory" [(ngModel)]="ticket.issueCategory"  disabled="disabled">
+												<option value="">--Select Issue Category--</option>
+												<option value="Direct" [ngValue] selected>Direct</option>
+												<option value="InDirect" [ngValue] selected>InDirect</option>
+												<option value="Audit" [ngValue] selected>Audit</option>
+												<option value="Others" [ngValue] selected>Others</option>
+											</select>
+                            </div>
+                    </div>
+                    <div class="col col-4 offset-1">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Issue Sub-Category<sup class="text-danger">*</sup></label>
+                            <select class="form-control" id="issueSub-Category" name="issueSub-Category"  [(ngModel)]="ticket.issueSubCategory"  disabled="disabled"
+                            style="border: solid 1px;">
+                                <option value="">--Select Issue Sub-Category--</option>
+                                <option value="{{ticket.issueSubCategory}}" [ngValue] selected>{{ticket.issueSubCategory}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col col-4 offset-1">
+                        <div class="form-group" *ngIf="designation=='Admin' || designation=='User'">
+                            <label class="font-weight-bold">Issue Type<sup class="text-danger">*</sup></label>
+                            <select class="form-control"  id="issueType" name="issueType"  value="{{ticket.issueType}}" disabled="disabled"
+                            style="border: solid 1px;">
+												<!-- <option value="">--Select Issue Type--</option> -->
+												<option value="Bug" [ngValue] selected>Bug</option>
+												<option value="ChangeRequest" [ngValue] selected>Change Request</option>
+                            </select>
+                        </div>
+                        <div class="form-group" *ngIf="(designation=='Assigned_User') && ((ticket.ticketStatus == 'Fixed') || (ticket.ticketStatus == 'Hold')
+                        || (ticket.ticketStatus == 'Closed') || (ticket.ticketStatus == 'ReOpen'))">
+                            <label class="font-weight-bold">Issue Type<sup class="text-danger">*</sup></label>
+                            <select class="form-control"  id="issueType" name="issueType"  value="{{ticket.issueType}}" disabled="disabled"
+                            style="border: solid 1px;">
+												<!-- <option value="">--Select Issue Type--</option> -->
+												<option value="Bug" [ngValue] selected>Bug</option>
+												<option value="ChangeRequest" [ngValue] selected>Change Request</option>
+                            </select>
+                        </div>
+                        <div class="form-group" *ngIf="((designation =='Assigned_User') && ((ticket.ticketStatus != 'Fixed') && (ticket.ticketStatus != 'Hold')
+                        && (ticket.ticketStatus != 'Closed') && (ticket.ticketStatus != 'ReOpen')))">
+                            <label class="font-weight-bold">Issue Type<sup class="text-danger">*</sup></label>
+                            <select class="form-control"  id="issueType" name="issueType"  value="{{ticket.issueType}}" 
+                            style="border: solid 1px;">
+												<!-- <option value="">--Select Issue Type--</option> -->
+												<option value="Bug" [ngValue] selected>Bug</option>
+												<option value="ChangeRequest" [ngValue] selected>Change Request</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col col-4 offset-1">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Severity<sup class="text-danger">*</sup></label> 
+                            <select class="form-control" id="priority" name="priority" [(ngModel)]="ticket.priority" disabled="disabled"
+                            style="border: solid 1px;">
+												<option value="">--Select Severity--</option>
+												<option value="Minor" [ngValue] selected>Minor</option>
+												<option value="Major" [ngValue] selected>Major</option>
+												<option value="Critical" [ngValue] selected>Critical</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col col-4 offset-1">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Assignee<sup class="text-danger">*</sup></label>
+                            <input type="text" class="form-control" id="assignedUser"  name="assignedUser" [(ngModel)]="ticket.assignedUser.username"
+                            style="border: solid 1px;" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col col-6 offset-1"> 
+                        <div class="form-group" *ngIf="ticket.ticketFileName != '' && ticket.ticketFileName != null">
+                            <label class="font-weight-bold" id="fills">Attached File<sup class="text-danger">*</sup></label><br>
+                            <!-- <a style="color:blue;" target="_blank" [(ngModel)]="ticket.ticketFileName"  [ngModelOptions]="{standalone: true}" (click)="getAttachedFile()">{{ticket.ticketFileName}}</a> -->
+                            <input style="color:blue;border-width:0px;border:none;box-shadow: none;" [(ngModel)]="ticket.ticketFileName" name="file-system" (click)="getAttachedFile()">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col col-11 offset-1">
+                        <div class="form-group col-10" *ngIf="((designation=='Admin' || designation=='User')) && ((ticket.ticketStatus != 'Closed') && (ticket.ticketStatus != 'Fixed')
+                        && (ticket.ticketStatus != 'InProgress') && (ticket.ticketStatus != 'Hold') && (ticket.ticketStatus != 'ReOpen')); else Show">
+                            <label for="issues" class="font-weight-bold">Issue Description <sup class="text-danger">*</sup></label>
+                            <textarea class="form-control" id="issueDescription" name="issueDescription" rows="4" (change)="selectDescription($event)"
+                            style="border: solid 1px;">{{ticket.issueDescription}}</textarea>
+                        </div>
+                        <ng-template #Show>
+                        <div class="form-group col-10" >
+                            <label for="issues" class="font-weight-bold">Issue Description <sup class="text-danger">*</sup></label>
+                            <textarea class="form-control" id="issueDescription" name="issueDescription" rows="4"
+                            style="border: solid 1px;" readonly="readonly">{{ticket.issueDescription}}</textarea>
+                        </div>
+                    </ng-template>
+                    </div>
+                </div>
+
+                <!-- <div class="col-10" >
+                   
+               </div> -->
+               
+               <input value="{{ticketResolution.resolutions}}" id="res" hidden>
+            
+               <div class="form-row">
+               <div class="col col-4 offset-1">
+                <div class="form-group" *ngIf="ticket.ticketStatus == 'Closed'; else other">
+                    <label class="font-weight-bold">Ticket Status<sup class="text-danger">*</sup></label> 
+                    <select class="form-control "
+                    id="ticketStatus" name="ticketStatus" value="{{ticket.ticketStatus}}" (change)="showAdminResolution($event)" disabled="disabled" style="border: solid 1px;">
+                    <option value="Open" [ngValue] selected hidden>Open</option>
+                    <option value="InProgress" [ngValue] selected hidden>InProgress</option>
+                    <option value="Fixed" [ngValue] selected hidden>Fixed</option>
+                    <option value="Hold" [ngValue] selected hidden>Hold</option>
+                    <option value="Closed" [ngValue] selected>Closed</option>
+                    <option value="ReOpen" [ngValue] selected>ReOpen</option>
+                </select>
+                </div>
+                <ng-template #other>
+                    <div class="form-group" *ngIf="(designation=='Admin' || designation=='User') && (ticket.ticketStatus == 'Fixed')">
+                        <label class="font-weight-bold">Ticket Status<sup class="text-danger">*</sup></label> 
+                        <select class="form-control "
+                        id="ticketStatus" name="ticketStatus" value="{{ticket.ticketStatus}}" (change)="showAdminResolution($event)" style="border: solid 1px;">
+                        <option value="Open" [ngValue] selected hidden>Open</option>
+                        <option value="InProgress" [ngValue] selected hidden>InProgress</option>
+                        <option value="Fixed" [ngValue] selected hidden>Fixed</option>
+                        <option value="Hold" [ngValue] selected hidden>Hold</option>
+                        <option value="Closed" [ngValue] selected>Closed</option>
+                        <option value="ReOpen" [ngValue] selected>ReOpen</option>
+                    </select>
+                    </div>
+                    <div class="form-group" *ngIf="(designation=='Admin' || designation=='User') && (ticket.ticketStatus != 'Fixed')">
+                        <label class="font-weight-bold">Ticket Status<sup class="text-danger">*</sup></label> 
+                        <select class="form-control "
+                        id="ticketStatus" name="ticketStatus" value="{{ticket.ticketStatus}}" style="border: solid 1px;">
+                        <option value="Open" [ngValue] selected hidden>Open</option>
+                        <option value="InProgress" [ngValue] selected hidden>InProgress</option>
+                        <option value="Fixed" [ngValue] selected hidden>Fixed</option>
+                        <option value="Hold" [ngValue] selected hidden>Hold</option>
+                        <option value="Closed" [ngValue] selected hidden>Closed</option>
+                        <option value="ReOpen" [ngValue] selected hidden>ReOpen</option>
+                    </select>
+                    </div>
+                    <div class="form-group" *ngIf="(designation=='Assigned_User') && ((ticket.ticketStatus != 'Fixed') && ((ticket.ticketStatus == 'Open') || (ticket.ticketStatus == 'InProgress') || (ticket.ticketStatus == 'Hold')
+                    || (ticket.ticketStatus == 'Closed') || (ticket.ticketStatus == 'ReOpen')))">
+                        <label class="font-weight-bold">Ticket Status<sup class="text-danger">*</sup></label> 
+                        <select class="form-control "
+                        id="ticketStatus" name="ticketStatus" value="{{ticket.ticketStatus}}" (change)="showTicketAdminResolution($event)" style="border: solid 1px;">
+                        <option value="Open" [ngValue] selected hidden>Open</option>
+                        <option value="InProgress" [ngValue] selected>InProgress</option>
+                        <option value="Fixed" [ngValue] selected>Fixed</option>
+                        <option value="Hold" [ngValue] selected>Hold</option>
+                        <option value="Closed" [ngValue] selected hidden>Closed</option>
+                        <option value="ReOpen" [ngValue] selected hidden>ReOpen</option>
+                    </select>
+                    </div>
+                    <div class="form-group" *ngIf="(designation=='Assigned_User') && ((ticket.ticketStatus == 'Fixed'))">
+                        <label class="font-weight-bold">Ticket Status<sup class="text-danger">*</sup></label> 
+                        <select class="form-control "
+                        id="ticketStatus" name="ticketStatus" value="{{ticket.ticketStatus}}" disabled="disabled" style="border: solid 1px;">
+                        <option value="Open" [ngValue] selected hidden>Open</option>
+                        <option value="InProgress" [ngValue] selected>InProgress</option>
+                        <option value="Fixed" [ngValue] selected>Fixed</option>
+                        <option value="Hold" [ngValue] selected>Hold</option>
+                        <option value="Closed" [ngValue] selected hidden>Closed</option>
+                        <option value="ReOpen" [ngValue] selected hidden>ReOpen</option>
+                    </select>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+        
+        <div class="form-row">
+        <div class="col-12" style="margin-left: 3rem;">
+            <div class="form-group col-10" *ngIf="(ticketResolution.resolutions != '' && ticketResolution.resolutions != null)
+             && ((ticket.ticketStatus == 'Closed') || ((designation=='Admin') || (designation=='User')) || ((designation=='Assigned_User') && (ticket.ticketStatus == 'Fixed'))); else Reslotion">
+                <label for="issues" class="font-weight-bold">Ticket Resolution<sup class="text-danger">*</sup></label>
+                <textarea class="form-control" id="resolutions" name="resolutions" rows="4" readonly="readonly"
+                style="border: solid 1px;">{{ticketResolution.resolutions}}</textarea>
+                <!-- <div *ngIf='issueDescription.invalid && (issueDescription.dirty || issueDescription.touched)' class="text-danger">
+                    <div *ngIf='issueDescription.errors.required'>Issue Description Required</div>
+                    <div *ngIf='issueDescription.errors.minlength'>User Name Should Contains Atleast 20 character</div>
+                 </div> -->
+            </div>
+            <ng-template #Reslotion>
+            <div id="divshow" *ngIf="isResolution">
+            <div class="form-group col-10">
+                <label for="issues" class="font-weight-bold">Ticket Resolution<sup class="text-danger">*</sup></label>
+                <textarea class="form-control" id="resolutionss" name="resolutions" rows="4"  placeholder="Ticket Resolution..."
+                style="border: solid 1px;" value="">{{ticketResolution.resolutions}}</textarea>
+            </div>
+        </div>
+        <div class="form-group col-10" *ngIf="(ticket.ticketStatus == 'InProgress' || ticket.ticketStatus == 'Fixed' || ticket.ticketStatus == 'Closed'
+         || ticket.ticketStatus == 'ReOpen' || ticket.ticketStatus == 'Hold')  && (ticketResolution.resolutions != '' && ticketResolution.resolutions != null)">
+            <label for="issues" class="font-weight-bold">Ticket Resolution<sup class="text-danger">*</sup></label>
+            <textarea class="form-control" id="resolutions" name="resolutions" rows="4"  placeholder="Ticket Resolution..."
+            style="border: solid 1px;">{{ticketResolution.resolutions}}</textarea>
+        </div>
+        </ng-template>
+       </div>
+    </div>
+    <br>
+    
+
+              <div class="col-12" style="margin-left: 3rem;">
+                    <div class="input-group mb-3 col-10 " *ngIf="((ticket.ticketStatus == 'Fixed')|| (ticket.ticketStatus == 'ReOpen') || 
+                    (ticket.ticketStatus == 'Closed')) && ((ticket.resolutionFileName != ''))">
+                        <label class="" for="customFile" class="font-weight-bold">Resolution File :<sup class="text-danger">*</sup></label>
+                        <a style="color:blue;margin-left:26px;" href="#" target="_blank">{{ticket.resolutionFileName}}</a>
+                    </div>
+                    <div id="divshow" *ngIf="isResolutionFile">
+                    <div class="input-group mb-3 col-10">
+                        <label class="" for="customFile" class="font-weight-bold">Upload File <sup class="text-danger">*</sup></label>
+                        <input type="file" class="form-control" id="resolutionFile" (change)="selectFile($event)"/>
+                    </div>
+                </div>
+                </div>
+                <div class="form-row">
+                    <div class="col col-3 offset-2 ">
+                    <div *ngIf="((ticketResolution.resolutions != '') && (((designation =='Admin' || designation =='User') && (ticket.ticketStatus != 'InProgress')
+                     && (ticket.ticketStatus != 'ReOpen') && (ticket.ticketStatus != 'Hold') && (ticket.ticketStatus != 'Closed'))
+                    || ((designation=='Assigned_User') && (ticket.ticketStatus != 'Fixed') && (ticket.ticketStatus != 'Closed'))))">
+                        <button type="button" class="btn btn-primary btn-block mt-4" (click)="updateTicketToDBInResolution()">UPDATE TICKET</button>
+                    </div>
+                    <div *ngIf="((ticketResolution.resolutions == '') && (((designation=='Admin' || designation=='User') && (ticket.ticketStatus != 'InProgress') && 
+                    (ticket.ticketStatus != 'ReOpen') && (ticket.ticketStatus != 'Hold') && (ticket.ticketStatus != 'Closed'))
+                    || ((designation=='Assigned_User') && (ticket.ticketStatus != 'Fixed') && (ticket.ticketStatus != 'Closed'))))">
+                        <button type="button" class="btn btn-primary btn-block  mt-4" (click)="updateTicketToDB()">UPDATE TICKET</button>
+                    </div>
+                </div>
+                <div class="col col-3 offset-1">
+                    <button type="button" class="btn btn-danger btn-block mt-4" (click)="goBack()">BACK</button>
+                </div> 
+                </div>
+                    <div class="text-center">
+                        <span style="color:springgreen; text-align: center;">{{responseMsg}}</span>
+                        <br>
+                        <span style="color:springgreen; text-align: center;">{{responseTicketId}}</span>  
+                    </div>
+ 
+
+               
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+<div class="container-fluid col-10" style="margin-top: 10px;" id="contactUs">
+    <div class="card" style="border: solid 1px; height: 40rem;">
+        <div class="card-header" id="cardHeaderForCreateUser">
+            <h3 class="font-weight-normal text-white text-center" style="margin-top: 5px;"> CONTACT US </h3>
+        </div>
+        <div class="card-body">
+            <form [formGroup]='formGroup'>
+                <div class="form-row mt-4">
+                    <div class="col col-4 offset-2">
+                        <div class="form-group">
+                            <label class="font-weight-bold">First Name:</label>
+                            <input type="text" class="form-control" id="firstName" name="firstName"
+                            formControlName='firstName' placeholder="First Name"
+                                style="border: solid 1px;" #fName>
+                                <div *ngIf='firstName.invalid && (firstName.dirty || firstName.touched)' class="text-danger">
+                                    <div *ngIf='firstName.errors.required'>First Name Required</div>
+                                    <div *ngIf='firstName.errors.minlength'>Fisrt Name Should Contains Atleast 5 character</div>
+                               <div *ngIf='firstName.errors.pattern'>Fisrt Name should contains only alphabets</div> 
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col col-4 offset-1">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Last Name:</label>
+                            <input type="text" class="form-control" id="lastName" name="lastName" 
+                            formControlName='lastName' placeholder="Last Name" #lName
+                                style="border: solid 1px;">
+                                <div *ngIf='lastName.invalid && (lastName.dirty || lastName.touched)' class="text-danger">
+                                    <div *ngIf='lastName.errors.required'>Last Name Required</div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <div class="col col-9 offset-2">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Email Address:</label>
+                            <input type="email" class="form-control" id="emailId" name="emailId"
+                            formControlName='emailValidation' placeholder="Email Address" style="border: solid 1px;" #emailId>
+                            <div *ngIf='emailValidation.invalid && (emailValidation.dirty || emailValidation.touched)' class="text-danger">
+                                <div *ngIf='emailValidation.errors.required'>Email Address Required </div>
+                                <div *ngIf='emailValidation.errors.pattern'>Please enter valid Email</div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <div class="col col-9 offset-2">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Subject:</label>
+                            <input type="text" class="form-control" id="subject" name="subject"
+                            formControlName='subjectValidation' placeholder="Subject" style="border: solid 1px;" #subject>
+                            <div *ngIf='subjectValidation.invalid && (subjectValidation.dirty || subjectValidation.touched)' class="text-danger">
+                                <div *ngIf='subjectValidation.errors.required'>Subject Required</div>
+                                <div *ngIf='subjectValidation.errors.pattern'>Subject Should contains only alphabets</div> 
+                      </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <div class="col col-9 offset-2">
+                        <div class="form-group">
+                            <label for="Message" class="font-weight-bold">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="3"  #message
+                            formControlName='messageValidation' style="border: solid 1px;"></textarea>
+                            <div *ngIf='messageValidation.invalid && (messageValidation.dirty || messageValidation.touched)' class="text-danger">
+                                <div *ngIf='messageValidation.errors.required'>Message Required</div>
+                                <div *ngIf='messageValidation.errors.minlength'>Message Should Contains Atleast 20 character</div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <div class="form-row ">
+            <div class="col col-3 offset-3">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block" [disabled] = "formGroup.invalid"
+                    (click)="send(fName.value,lName.value,emailId.value,subject.value,message.value)">SEND</button>
+                </div>        
+            </div>
+            <div class="col col-3 offset-1">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger btn-block" (click)="hideThis()">CANCEL</button>
+                </div>        
+            </div>
+            <div class="text-center">
+                <span style="color:springgreen; text-align: center;">{{responseMsg}}</span>
+            </div>
+        </div>
+        
+        </div>
+
+    </div>
+
+
+</div>

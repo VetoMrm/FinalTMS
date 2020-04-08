@@ -1,0 +1,21 @@
+body{
+    background-color: #fdf3f5;
+}
+#cardHeaderForCreateUsers{
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    padding-top: 2px;
+    padding-bottom: 0px;
+    text-align: center;
+    font-size: 30px;
+}
+.loader.img-responsive{
+    margin: 0 auto;
+    /* position: fixed;
+    margin-right: auto; */
+    /* left: 0px;
+    top: 0px;
+    display: inline */
+    /* z-index: 9999;
+     background: url('src/assets/loading.gif') 
+                50% 50% no-repeat rgb(249,249,249); */
+  } 

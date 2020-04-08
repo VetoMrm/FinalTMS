@@ -1,0 +1,93 @@
+<div class="container-fluid col-10" style="margin-top: 10px;">
+    <div class="card" style="border: solid 1px;">
+        <div class="card-header" id="cardHeaderForCreateUsers">
+
+            <p class="font-weight-normal text-white" style="margin-top: 5px;"> EDIT USER </p>
+        </div>
+        <div class="card-body offset-1">
+
+            <form [formGroup]='formGroup'>
+                    <div class="col col-5 offset-3">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Company Name<sup class="text-danger">*</sup></label>
+                            <select  class="form-control" [(ngModel)]="userDetail" id="companyId" [attr.disabled]="true" (change)="selectComapny($event)" 
+                             name="companyId" formControlName='companyName'  #cId style="border: solid 1px;">
+                                <option  *ngFor="let com of company" value="{{com.companyId}}" [ngValue]>{{com.companyName}}</option>
+                            </select>
+                            <div *ngIf='companyName.invalid && (companyName.dirty || companyName.touched)' class="text-danger">
+                                <div *ngIf='companyName.errors.required'>Comapny Name Required</div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col col-5 offset-3">
+                        <div class="form-group">
+                            <label class="font-weight-bold">User Name<sup class="text-danger">*</sup></label>
+                            <input type="text" class="form-control" id="userName" name="username" (keyup)="checkUserName($event)" [(ngModel)]="user.username" formControlName='userName' #uName
+                                placeholder="Enter Your Username" style="border: solid 1px;">
+                                <div *ngIf='userName.invalid && (userName.dirty || userName.touched)' class="text-danger">
+                                    <div *ngIf='userName.errors.required'>User Name Required</div>
+                                    <div *ngIf='userName.errors.minlength'>User Name Should Contains Atleast 5 character</div>
+                               <div *ngIf='userName.errors.pattern'>User Name should contains only alphabets</div> 
+                          </div>
+                          <div *ngIf="userNameAlreadyExist" class="text-danger"> User Name is Already Exist...Please Change the User Name</div>
+                        </div>
+                        
+                    </div>
+                    <div class="col col-5 offset-3">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Display Name<sup class="text-danger">*</sup></label>
+                            <input type="text" class="form-control" id="displayName" name="DisplayName" [(ngModel)]="user.displayName" formControlName='displayName' #dName
+                                placeholder="Enter The Display Name" style="border: solid 1px;">
+                                <div *ngIf='displayName.invalid && (displayName.dirty || displayName.touched)' class="text-danger">
+                                    <div *ngIf='displayName.errors.required'>Display Name Required</div>
+                                    <div *ngIf='displayName.errors.minlength'>Display Name Should Contains Atleast 5 character
+                                     </div>
+                               <div *ngIf='displayName.errors.pattern'>Display Name should contains only alphabets</div> 
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col col-5 offset-3" *ngIf="designation=='Admin' || designation=='User'">
+                        <div class="form-group">
+                            <label class="font-weight-bold">User Type<sup class="text-danger">*</sup></label>
+                            <select class="form-control" ngModel="3"  (change)="selectUserType($event)" [attr.disabled]="true" id="userType" name="userType" style="border: solid 1px;" formControlName='userType'>
+                                <option selected value="3" >User</option>
+                            </select>
+                            <div *ngIf='userType.invalid && (userType.dirty || userType.touched)' class="text-danger">
+                                <div *ngIf='userType.errors.required'>User Type Required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-5 offset-3" *ngIf="designation=='SuperAdmin'">
+                        <div class="form-group">
+                            <label class="font-weight-bold">User Type<sup class="text-danger">*</sup></label>
+                            <select class="form-control" ngModel="2" (change)="selectUserType($event)" id="userType" [attr.disabled]="true" name="userType" style="border: solid 1px;" formControlName='userType'>
+                                <option selected value="2">Admin</option>
+                            </select>
+                            <div *ngIf='userType.invalid && (userType.dirty || userType.touched)' class="text-danger">
+                                <div *ngIf='userType.errors.required'>User Type Required</div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col col-5 offset-3">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Email Address<sup class="text-danger">*</sup></label>
+                            <input type="email" class="form-control" id="email" name="email" formControlName='emailId' (keyup)="checkEmailId($event)" [(ngModel)]="user.email" #email
+                                placeholder="Enter The Email Address" style="border: solid 1px;">
+                                <div *ngIf='emailId.invalid && (emailId.dirty || emailId.touched)' class="text-danger">
+                                    <div *ngIf='emailId.errors.required'>Email Address Required </div>
+                                    <div *ngIf='emailId.errors.pattern'>Please enter valid Email</div> 
+                                </div>
+                                <div *ngIf="emailIdAlreadyExist" class="text-danger"> Email Id is Already Exist...Please Change the Email Id</div>
+                        </div>
+                    </div>
+                </form>
+                <div>
+                    <button type="submit" class="btn btn-primary btn-block col-3 offset-4 mt-4" id="updateUser" [disabled] = "formGroup.invalid" 
+                    (click)="updateeUser(uName.value,dName.value,email.value)">UPDATE USER</button>
+                </div>
+                <div class="text-center">
+                    <span style="color:springgreen; text-align: center;">{{msg}}</span>
+                  </div>
+            </div>
+        </div>
+    </div>
